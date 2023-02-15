@@ -1,5 +1,5 @@
 // här ska åtminstone funktionen som inkluderar fetch-anropet finnas
 
-async function fetch_request() {
-    await fetch("https://teaching.maumt.se/apis/access/");
+async function fetch_request(request) {
+    return await fetch(request);
 }
