@@ -1,23 +1,30 @@
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/fonts/RobotoCondensed-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Roboto Light";
+    font-family: Roboto Light;
     src: url("/fonts/RobotoCondensed-Light.ttf");
 }
 
 @font-face {
-    font-family: "Roboto Bold";
+    font-family: Roboto Bold;
     src: url("/fonts/RobotoCondensed-Bold.ttf");
 }
 
 * {
-    font-family: "Roboto";
+    --screen-height: 666px;
+    --screen-width: 337px;
+
+    font-family: Roboto;
 }
 
 body {
     margin: 0;
     background-color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
