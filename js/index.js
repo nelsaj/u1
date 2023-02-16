@@ -1,1 +1,1 @@
-console.log("test");
+login_register();
