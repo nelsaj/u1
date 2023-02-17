@@ -16,6 +16,7 @@
 * {
     --screen-height: 666px;
     --screen-width: 337px;
+    --padding: 20px;
 
     font-family: Roboto;
 }
@@ -27,4 +28,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#wrapper {
+    border-radius: 10px;
+    height: var(--screen-height);
+    width: var(--screen-width);
+
+    padding: var(--padding);
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
 }

@@ -26,18 +26,7 @@
     gap: 20px;
 }
 
-.hide {
-    display: none;
-}
-
 #wrapper {
-    border-radius: 10px;
-    height: var(--screen-height);
-    width: var(--screen-width);
-
-    padding: 20px;
-    box-sizing: border-box;
-
     display: grid;
     grid-template-rows: 1fr, 2fr, 1fr;
 }
