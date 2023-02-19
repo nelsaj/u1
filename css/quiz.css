@@ -1,47 +1,5 @@
-#whiteScreen {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    height: var(--screen-height);
-    width: var(--screen-width);
-    background-color: rgba(240, 248, 255, 0.5);
-}
-
-#infoBox {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 300px;
-
-    margin: auto;
-
-    padding: 5vh;
-    text-align: center;
-    background-color: rgba(255, 255, 255, .7);
-    border-radius: 20px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-#wrapper {
-    display: grid;
-    grid-template-rows: 1fr, 2fr, 1fr;
-}
-
 .quizColor {
     background-color: aqua;
-}
-
-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-header div:nth-child(2) {
-    text-align: end;
 }
 
 #logout {
@@ -52,16 +10,6 @@ header div:nth-child(2) {
 }
 
 main {}
-
-
-.logo {
-    background-image: url("/media/logo.png");
-    background-position: center;
-    background-size: cover;
-
-    height: 30px;
-    width: 30px;
-}
 
 #dogImage {
     max-width: calc(var(--screen-width) - (var(--padding) * 2));
@@ -79,9 +27,4 @@ main {}
 #options button {
     font-size: 18px;
     height: 50px;
-}
-
-footer {
-    display: flex;
-    align-items: end;
 }
