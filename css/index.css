@@ -16,6 +16,7 @@
 * {
     --screen-height: 666px;
     --screen-width: 337px;
+    --padding: 20px;
 
     font-family: Roboto;
 }
@@ -36,7 +37,7 @@ body {
     height: var(--screen-height);
     width: var(--screen-width);
 
-    padding: 20px;
+    padding: var(--padding);
     box-sizing: border-box;
 
     display: grid;
