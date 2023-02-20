@@ -29,6 +29,9 @@ body {
     justify-content: center;
     align-items: center;
 
+    height: var(--screen-height);
+    width: var(--screen-width);
+
     font-family: "Roboto";
 }
 
@@ -42,6 +45,8 @@ body {
 
     display: grid;
     grid-template-rows: 1fr, 2fr, 1fr;
+
+    overflow-y: scroll;
 }
 
 header {
@@ -70,7 +75,7 @@ footer {
 #whiteScreen {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
 
     height: var(--screen-height);
     width: var(--screen-width);

@@ -1,44 +1,28 @@
 function login_register() {
+    // add html
     document.querySelector("#css").setAttribute("href", "css/login_register.css");
+    document.querySelector("#logout").innerHTML = "";
     document.querySelector("#wrapper").classList.add("coral");
-    document.querySelector("#wrapper").innerHTML = `
-        <div id="whiteScreen" class="hide">    
-            <div id="infoBox">
-                <div></div>
-                <button class="hide">CLOSE</button>
-            </div>
+    document.querySelector("main").innerHTML = `
+        <h1 id="current_page">LOGIN</h1>
+        <div class="userInputs">
+            <label for="name">User Name:</label>
+            <input name="name" id="name">
         </div>
-    
-        <header>
-            <div class="logo"></div>
-            <div>Dog Breed Quiz</div>
-        </header>
-    
-        <main>
-            <h1 id="current_page">LOGIN</h1>
-            <div class="userInputs">
-                <label for="name">User Name:</label>
-                <input name="name" id="name">
-            </div>
-            <div class="userInputs">
-                <label for="pass">Password:</label>
-                <input type="password" name="pass" id="pass">
-            </div>
-    
-            <div id="button">
-                <label for="login">Let the magic start!</label>
-                <button name="login">Login</button>
-            </div>
-            
-            <div id="loginRegisterContainer">
-                <p id="loginRegister">New to this? Register for free.</p>
-            </div>
-        </main>
-    
-        <footer>
-            <p>The Dog Breed Quiz is made possible thanks to the free APi by <a href="">DOG CEO Zine</a></p>
-        </footer>
-    `;
+        <div class="userInputs">
+            <label for="pass">Password:</label>
+            <input type="password" name="pass" id="pass">
+        </div>
+
+        <div id="button">
+            <label for="login">Let the magic start!</label>
+            <button name="login">Login</button>
+        </div>
+        
+        <div id="loginRegisterContainer">
+            <p id="loginRegister">New to this? Register for free.</p>
+        </div>
+    `
 
     // variabler för lättare läsning
     const username = document.querySelector("#name");
@@ -56,9 +40,11 @@ function login_register() {
     const infoBoxText = document.querySelector("#infoBox > div");
     const infoBoxButton = document.querySelector("#infoBox > button");
 
+    //click login or register
     button.addEventListener("click", beginLoginRegister);
 
     async function beginLoginRegister() {
+        // if screen is register
         if (document.querySelector("#wrapper").classList.contains("darkCoral")) {
             const newUser = {
                 action: "register",
@@ -81,6 +67,7 @@ function login_register() {
                 infoBoxContent("The server thinks its a teapot", true);
             }
         } else {
+            // if screen is login
             const request = new Request(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${username.value}&password=${password.value}`);
             infoBoxContent("Contacting server");
             const fetched = await fetch_request(request);
@@ -96,17 +83,20 @@ function login_register() {
         }
     }
 
+    // choose between login och register screen
     loginOrRegister.addEventListener("click", e => {
         for (const input of inputs) { input.value = ""; }
         document.querySelector("#wrapper").classList.toggle("coral");
         document.querySelector("#wrapper").classList.toggle("darkCoral");
 
+        // if screen is register
         if (document.querySelector("#wrapper").classList.contains("darkCoral")) {
             currentPage.textContent = "REGISTER";
             flavorText.textContent = "Ready when you are...";
             loginOrRegister.textContent = "Already have an account? Go to login";
             button.textContent = "Register";
         } else {
+            // if screen is login
             currentPage.textContent = "LOGIN";
             flavorText.textContent = "Let the magic start!";
             loginOrRegister.textContent = "New to this? Register for free.";
@@ -114,6 +104,7 @@ function login_register() {
         }
     })
 
+    // infobox
     infoBoxButton.addEventListener("click", infoBoxRemove);
 
     function infoBoxContent(content, button) {
