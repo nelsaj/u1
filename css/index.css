@@ -19,6 +19,7 @@
     --padding: 20px;
 
     font-family: Roboto;
+    color: #22223b;
 }
 
 body {
@@ -29,7 +30,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: "Roboto";
+    height: var(--screen-height);
+    width: var(--screen-width);
 }
 
 #wrapper {
@@ -42,6 +44,7 @@ body {
 
     display: grid;
     grid-template-rows: 1fr, 2fr, 1fr;
+    overflow-y: scroll;
 }
 
 header {
@@ -70,11 +73,11 @@ footer {
 #whiteScreen {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
 
     height: var(--screen-height);
     width: var(--screen-width);
-    background-color: rgba(240, 248, 255, 0.5);
+    background-color: #f4f1de91;
 }
 
 #infoBox {
@@ -85,9 +88,9 @@ footer {
 
     margin: auto;
 
-    padding: 5vh;
+    padding: 20px;
     text-align: center;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: #f4f1decb;
     border-radius: 20px;
 
     display: flex;
@@ -97,4 +100,25 @@ footer {
 
 .hide {
     display: none;
+}
+
+button {
+    background-color: #f2cc8f;
+    color: #e07a5f;
+    border-radius: 10px;
+    padding: 5px;
+    border: 0;
+}
+
+button:hover {
+    background-color: rgb(243, 204, 154);
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #efc581;
+}
+
+a {
+    color: #6d597a;
 }

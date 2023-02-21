@@ -1,11 +1,11 @@
 .coral {
-    background-color: coral;
+    background-color: #f4845f;
     transition: 0.5s;
     transition-property: background-Color;
 }
 
 .darkCoral {
-    background-color: rgb(203, 105, 69);
+    background-color: #f27059;
     transition: 0.5s;
     transition-property: background-Color;
 }
@@ -23,7 +23,7 @@ main {
 }
 
 main input {
-    height: 4vh;
+    height: 25px;
 }
 
 h1 {
@@ -45,7 +45,7 @@ h1 {
 }
 
 #button>button {
-    height: 7vh;
+    height: 50px;
     font-size: 18px;
 }
 
@@ -63,6 +63,9 @@ h1 {
     margin: 0;
 }
 
+#loginRegister:hover {
+    cursor: pointer;
+}
 
 input {
     font-size: 15px;
@@ -74,4 +77,5 @@ input {
 
 input:focus {
     outline: none;
+    background-color: rgba(0, 0, 0, 0.046);
 }

@@ -1,5 +1,7 @@
 function login_register() {
     // add html
+    document.querySelector("#css").setAttribute("href", "css/login_register.css");
+    document.querySelector("#logout").innerHTML = "";
     document.querySelector("#wrapper").classList.add("coral");
     document.querySelector("main").innerHTML = `
         <h1 id="current_page">LOGIN</h1>
@@ -70,7 +72,7 @@ function login_register() {
             infoBoxContent("Contacting server");
             const fetched = await fetch_request(request);
             if (fetched.status === 200) {
-                quiz();
+                quiz(username.value);
             } else if (fetched.status === 404) {
                 whiteScreen.classList.add("hide");
                 flavorText.textContent = "Username or password incorrect";

@@ -1,0 +1,52 @@
+.quizColor {
+    background-color: #81b29a;
+}
+
+#logout {
+    background-color: #f4f1de;
+
+    grid-column: 1/3;
+    padding: 10px;
+    height: 20px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+header {
+    justify-content: center;
+}
+
+main {}
+
+#dogImage {
+    width: calc(var(--screen-width) - (var(--padding) * 2));
+    border-radius: 15px;
+    margin-bottom: 20px;
+    /* box-shadow: 5px 5px 0 #3d405b; */
+}
+
+#options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 10px;
+}
+
+#options button {
+    font-size: 18px;
+    height: 50px;
+
+    box-shadow: 5px 5px 0 #e07a5f;
+    transition: box-shadow 0.5s;
+}
+
+#options button:active {
+    box-shadow: 0 0 0;
+    transition: box-shadow 0.2s;
+}
