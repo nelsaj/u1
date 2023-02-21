@@ -1,9 +1,9 @@
 .quizColor {
-    background-color: aqua;
+    background-color: #81b29a;
 }
 
 #logout {
-    background-color: whitesmoke;
+    background-color: #f4f1de;
 
     grid-column: 1/3;
     padding: 10px;
@@ -26,6 +26,8 @@ main {}
 #dogImage {
     width: calc(var(--screen-width) - (var(--padding) * 2));
     border-radius: 15px;
+    margin-bottom: 20px;
+    /* box-shadow: 5px 5px 0 #3d405b; */
 }
 
 #options {
@@ -33,10 +35,18 @@ main {}
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 
-    gap: 5px;
+    gap: 10px;
 }
 
 #options button {
     font-size: 18px;
     height: 50px;
+
+    box-shadow: 5px 5px 0 #e07a5f;
+    transition: box-shadow 0.5s;
+}
+
+#options button:active {
+    box-shadow: 0 0 0;
+    transition: box-shadow 0.2s;
 }

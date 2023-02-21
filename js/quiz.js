@@ -1,17 +1,25 @@
 function quiz(username) {
+    // save to local storage so correct site will load upon reload
+    localStorage.setItem("status", "loggedin");
+    localStorage.setItem("username", username);
+
     // set up html
     document.querySelector("#css").setAttribute("href", "css/quiz.css");
     document.querySelector("#wrapper").classList.add("quizColor")
     document.querySelector("main").innerHTML = `
-        <img src="/media/logo.png" id="dogImage">
-        <div id="options"></div>
-    `
+            <img src="/media/logo.png" id="dogImage">
+            <div id="options"></div>
+        `
     document.querySelector("#logout").innerHTML = `
-        <p>${username}</p>
-        <button>logout</button>
-    `
+            <p>${username}</p>
+            <button>logout</button>
+        `
 
-    document.querySelector("#logout button").addEventListener("click", login_register);
+    document.querySelector("#logout button").addEventListener("click", logOut);
+    function logOut() {
+        localStorage.clear();
+        login_register();
+    };
 
     //variabler
     const dogImage = document.querySelector("#dogImage");
@@ -24,8 +32,6 @@ function quiz(username) {
 
     // Getting a random image from server
     async function GettingARandomImage() {
-        let possiblePositions = ["one", "two", "three", "four"];
-
         dogImage.setAttribute("src", "/media/logo.png")
 
         infoBoxContent("Getting a random image");
@@ -42,37 +48,38 @@ function quiz(username) {
             <button id="four"></button>
         `
         // put in random position
+        let possiblePositions = ["one", "two", "three", "four"];
+
         const randomNumber = Math.floor(Math.random() * possiblePositions.length);
         const randomPosition = possiblePositions[randomNumber];
         document.querySelector(`#${randomPosition}`).textContent = `${randomBreed.name}`
         possiblePositions.splice(randomNumber, 1);
 
+        let breedArray = []
         for (const position of possiblePositions) {
             let wrongBreed = ALL_BREEDS[Math.floor(Math.random() * ALL_BREEDS.length)];
 
             if (wrongBreed.name === randomBreed.name) {
-                console.log("ALERT");
+                GettingARandomImage();
+            } else if (breedArray.includes(wrongBreed)) {
                 GettingARandomImage();
             } else {
                 document.querySelector(`#${position}`).textContent = `${wrongBreed.name}`;
+                breedArray.push(wrongBreed);
             }
         }
 
         const optionButtons = document.querySelectorAll("#options button");
 
-        console.log(randomBreed);
-
         // add functionality to buttons
         optionButtons.forEach(button => button.addEventListener("click", checkAnswer));
         function checkAnswer(e) {
-            console.log(e.target.textContent);
-
             if (e.target.textContent === randomBreed.name) {
                 infoBoxContent("Correct!", true);
-                infoBox.style.backgroundColor = "green";
+                infoBox.style.backgroundColor = "#76c893";
             } else {
-                infoBoxContent("False!", true);
-                infoBox.style.backgroundColor = "red";
+                infoBoxContent(`Wrong! The correct answer was ${randomBreed.name}`, true);
+                infoBox.style.backgroundColor = "#e07a5f";
             }
         }
     }
