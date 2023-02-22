@@ -72,10 +72,10 @@ input {
 
     background-color: rgba(0, 0, 255, 0);
     border: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #22223b;
 }
 
 input:focus {
     outline: none;
-    background-color: rgba(0, 0, 0, 0.046);
+    background-color: #9e2a2c11;
 }

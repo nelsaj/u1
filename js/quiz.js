@@ -18,6 +18,7 @@ function quiz(username) {
     document.querySelector("#logout button").addEventListener("click", logOut);
     function logOut() {
         localStorage.clear();
+        infoBoxButton.removeEventListener("click", GettingARandomImage);
         login_register();
     };
 
@@ -27,15 +28,17 @@ function quiz(username) {
 
     const whiteScreen = document.querySelector("#whiteScreen");
     const infoBox = document.querySelector("#infoBox");
-    const infoBoxText = document.querySelector("#infoBox > div");
     const infoBoxButton = document.querySelector("#infoBox > button");
 
     // Getting a random image from server
+    GettingARandomImage();
     async function GettingARandomImage() {
-        dogImage.setAttribute("src", "/media/logo.png")
+        dogImage.setAttribute("src", "media/logo.png");
 
         infoBoxContent("Getting a random image");
-        const randomBreed = ALL_BREEDS[Math.floor(Math.random() * ALL_BREEDS.length)];
+        let everyBreed = ALL_BREEDS.map(breed => breed);
+        const randomBreed = everyBreed[Math.floor(Math.random() * ALL_BREEDS.length)];
+        everyBreed.splice(randomBreed, 1);
 
         let image = await (await fetch_request(`https://dog.ceo/api/breed/${randomBreed.url}/images/random`)).json();
         dogImage.setAttribute("src", `${image.message}`)
@@ -55,18 +58,11 @@ function quiz(username) {
         document.querySelector(`#${randomPosition}`).textContent = `${randomBreed.name}`
         possiblePositions.splice(randomNumber, 1);
 
-        let breedArray = []
         for (const position of possiblePositions) {
-            let wrongBreed = ALL_BREEDS[Math.floor(Math.random() * ALL_BREEDS.length)];
+            let wrongBreed = everyBreed[Math.floor(Math.random() * everyBreed.length)];
+            everyBreed.splice(randomBreed, 1);
 
-            if (wrongBreed.name === randomBreed.name) {
-                GettingARandomImage();
-            } else if (breedArray.includes(wrongBreed)) {
-                GettingARandomImage();
-            } else {
-                document.querySelector(`#${position}`).textContent = `${wrongBreed.name}`;
-                breedArray.push(wrongBreed);
-            }
+            document.querySelector(`#${position}`).textContent = `${wrongBreed.name}`;
         }
 
         const optionButtons = document.querySelectorAll("#options button");
@@ -78,30 +74,12 @@ function quiz(username) {
                 infoBoxContent("Correct!", true);
                 infoBox.style.backgroundColor = "#76c893";
             } else {
-                infoBoxContent(`Wrong! The correct answer was ${randomBreed.name}`, true);
+                infoBoxContent(`Wrong! The correct answer was ${randomBreed.name}.`, true);
                 infoBox.style.backgroundColor = "#e07a5f";
             }
         }
     }
-    GettingARandomImage();
 
-    // content for infobox (w/ option for with or without button)
-    function infoBoxContent(content, button) {
-        infoBoxText.textContent = content;
-        whiteScreen.classList.remove("hide");
-        if (button) {
-            infoBoxButton.classList.remove("hide");
-        }
-    }
-
-    infoBoxButton.addEventListener("click", infoBoxRemove);
-
-    function infoBoxRemove() {
-        whiteScreen.classList.add("hide");
-        infoBoxButton.classList.add("hide");
-
-        infoBox.style.backgroundColor = "";
-
-        GettingARandomImage();
-    }
+    // infobox
+    infoBoxButton.addEventListener("click", GettingARandomImage);
 }

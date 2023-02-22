@@ -36,14 +36,13 @@ function login_register() {
     const inputs = document.querySelectorAll("input");
 
     const whiteScreen = document.querySelector("#whiteScreen");
-    const infoBox = document.querySelector("#infoBox");
-    const infoBoxText = document.querySelector("#infoBox > div");
-    const infoBoxButton = document.querySelector("#infoBox > button");
 
     //click login or register
     button.addEventListener("click", beginLoginRegister);
 
     async function beginLoginRegister() {
+        // const request = new Request();
+        infoBoxContent("Contacting server");
         // if screen is register
         if (document.querySelector("#wrapper").classList.contains("darkCoral")) {
             const newUser = {
@@ -57,7 +56,6 @@ function login_register() {
                 body: JSON.stringify(newUser)
             }
             const request = new Request(`https://teaching.maumt.se/apis/access/`, POSTNewUser);
-            infoBoxContent("Contacting server");
             const fetched = await fetch_request(request);
             if (fetched.status === 200) {
                 infoBoxContent("New user created!", true);
@@ -65,26 +63,32 @@ function login_register() {
                 infoBoxContent("Sorry that user is already taken", true);
             } else if (fetched.status === 418) {
                 infoBoxContent("The server thinks its a teapot", true);
+            } else if (fetched.status === 400) {
+                infoBoxContent("Please don't leave any field blank", true);
             }
         } else {
             // if screen is login
             const request = new Request(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${username.value}&password=${password.value}`);
-            infoBoxContent("Contacting server");
             const fetched = await fetch_request(request);
             if (fetched.status === 200) {
                 quiz(username.value);
             } else if (fetched.status === 404) {
                 whiteScreen.classList.add("hide");
+
                 flavorText.textContent = "Username or password incorrect";
-                flavorText.style.backgroundColor = "red";
+                flavorText.style.backgroundColor = "#f4f1de91";
             } else if (fetched.status === 418) {
                 infoBoxContent("The server thinks its a teapot", true);
+            } else if (fetched.status === 400) {
+                infoBoxContent("Please don't leave any field blank", true);
             }
         }
     }
 
     // choose between login och register screen
     loginOrRegister.addEventListener("click", e => {
+        flavorText.removeAttribute("style");
+
         for (const input of inputs) { input.value = ""; }
         document.querySelector("#wrapper").classList.toggle("coral");
         document.querySelector("#wrapper").classList.toggle("darkCoral");
@@ -103,22 +107,4 @@ function login_register() {
             button.textContent = "Login";
         }
     })
-
-    // infobox
-    infoBoxButton.addEventListener("click", infoBoxRemove);
-
-    function infoBoxContent(content, button) {
-        infoBoxText.textContent = content;
-        whiteScreen.classList.remove("hide");
-        if (button) {
-            infoBoxButton.classList.remove("hide");
-        }
-    }
-
-    function infoBoxRemove() {
-        whiteScreen.classList.add("hide");
-        infoBoxButton.classList.add("hide");
-    }
-
-
 }
