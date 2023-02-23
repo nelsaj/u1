@@ -2,7 +2,7 @@ function login_register() {
     // add html
     document.querySelector("#css").setAttribute("href", "css/login_register.css");
     document.querySelector("#logout").innerHTML = "";
-    document.querySelector("#wrapper").classList.add("coral");
+    document.querySelector("#wrapper").classList.add("loginColor");
     document.querySelector("main").innerHTML = `
         <h1 id="current_page">LOGIN</h1>
         <div class="userInputs">
@@ -44,7 +44,7 @@ function login_register() {
         // const request = new Request();
         infoBoxContent("Contacting server");
         // if screen is register
-        if (document.querySelector("#wrapper").classList.contains("darkCoral")) {
+        if (document.querySelector("#wrapper").classList.contains("registerColor")) {
             const newUser = {
                 action: "register",
                 user_name: username.value,
@@ -90,11 +90,11 @@ function login_register() {
         flavorText.removeAttribute("style");
 
         for (const input of inputs) { input.value = ""; }
-        document.querySelector("#wrapper").classList.toggle("coral");
-        document.querySelector("#wrapper").classList.toggle("darkCoral");
+        document.querySelector("#wrapper").classList.toggle("loginColor");
+        document.querySelector("#wrapper").classList.toggle("registerColor");
 
         // if screen is register
-        if (document.querySelector("#wrapper").classList.contains("darkCoral")) {
+        if (document.querySelector("#wrapper").classList.contains("registerColor")) {
             currentPage.textContent = "REGISTER";
             flavorText.textContent = "Ready when you are...";
             loginOrRegister.textContent = "Already have an account? Go to login";
