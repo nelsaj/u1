@@ -66,16 +66,3 @@ h1 {
 #loginRegister:hover {
     cursor: pointer;
 }
-
-input {
-    font-size: 15px;
-
-    background-color: rgba(0, 0, 255, 0);
-    border: 0;
-    border-bottom: 1px solid #22223b;
-}
-
-input:focus {
-    outline: none;
-    background-color: #9e2a2c11;
-}
